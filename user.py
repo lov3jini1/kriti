@@ -138,7 +138,7 @@ async def send_messages():
                     await log_message(f': Bot is running. Message sent to {group.name}')
                     last_log_time = current_time
 
-                await asyncio.sleep(random.randint(4, 5))
+                await asyncio.sleep(random.randint(10, 15))
             except errors.FloodWaitError as e:
                 await log_message(f': Rate limited: group chat wait for {e.seconds} seconds before retrying')
                 await asyncio.sleep(e.seconds)
@@ -146,7 +146,7 @@ async def send_messages():
                 await log_message(f": Cannot send message to {group.name}: {e}")
             except Exception as e:
                 await log_message(f': Failed to send message to {group.name}: {e}')
-                await asyncio.sleep(5)
+                await asyncio.sleep(20)
 
 async def main():
     if not await client.is_user_authorized():
